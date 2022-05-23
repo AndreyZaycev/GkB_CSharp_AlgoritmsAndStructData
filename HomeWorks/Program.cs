@@ -17,6 +17,7 @@ namespace HomeWorks
             outList.Add("Урок № 1, домашнее задание № 3");
             outList.Add("Урок № 2, домашнее задание № 1");
             outList.Add("Урок № 2, домашнее задание № 2");
+            outList.Add("Урок № 3, домашнее задание");
             return outList;
         }
         #endregion
@@ -197,7 +198,28 @@ namespace HomeWorks
                 Console.WriteLine(sResult);
             }
         }
-        
+
+        //Урок № 3, дз: Отдельный метод, для вывода времени выполнения кода для массивов точек значимого и ссылочного типов
+        static void CheckTimePerformance()
+        {
+            Console.WriteLine("\nКоличество точек | Время timeStruct | Время timeClass | Ratio (timeClass/timeStruct)");
+            Console.WriteLine("---------------- | ---------------- | --------------- | ----------------------------");
+            _Check(100000);
+            _Check(200000);
+            _Check(300000);
+            _Check(400000);
+
+            void _Check(int _numberPoint)
+            {
+                CheckTimeEstimateDistance obCheck = new CheckTimeEstimateDistance(_numberPoint);
+                double timeStruct = obCheck.GetTimeEstimateDistancePointStruct();
+                double timeClass = obCheck.GetTimeEstimateDistancePointClass();
+                double ratio = Math.Round(timeClass / timeStruct, 6);
+                Console.WriteLine("{0, 16} | {1, 16} | {2, 15} | {3, 27}", _numberPoint, timeStruct, timeClass, ratio);
+                Console.WriteLine("---------------- | ---------------- | --------------- | ----------------------------");
+            }
+        }
+
         static void Main(string[] args)
         {
             bool bExit = true;
@@ -216,6 +238,7 @@ namespace HomeWorks
                     case 3: CheckEstimateNumberFibonachi(); break;
                     case 4: CheckDoublyLinkedList(); break;
                     case 5: CheckBinarySearch(); break;
+                    case 6: CheckTimePerformance(); break;
                 }
                 Console.Write("\nДля продолжения работы нажмите любую клавишу, для окончания n : ");
                 bExit = (Console.ReadLine() == "n") ? false : true;
