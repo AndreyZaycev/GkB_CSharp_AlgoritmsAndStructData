@@ -18,6 +18,8 @@ namespace HomeWorks
             outList.Add("Урок № 2, домашнее задание № 1");
             outList.Add("Урок № 2, домашнее задание № 2");
             outList.Add("Урок № 3, домашнее задание");
+            outList.Add("Урок № 4, домашнее задание № 1");
+            outList.Add("Урок № 4, домашнее задание № 2");
             return outList;
         }
         #endregion
@@ -202,6 +204,10 @@ namespace HomeWorks
         //Урок № 3, дз: Отдельный метод, для вывода времени выполнения кода для массивов точек значимого и ссылочного типов
         static void CheckTimePerformance()
         {
+            //
+            Console.WriteLine("Решение домашнего задания урока № 3");
+
+            //
             Console.WriteLine("\nКоличество точек | Время timeStruct | Время timeClass | Ratio (timeClass/timeStruct)");
             Console.WriteLine("---------------- | ---------------- | --------------- | ----------------------------");
             _Check(100000);
@@ -217,6 +223,130 @@ namespace HomeWorks
                 double ratio = Math.Round(timeClass / timeStruct, 6);
                 Console.WriteLine("{0, 16} | {1, 16} | {2, 15} | {3, 27}", _numberPoint, timeStruct, timeClass, ratio);
                 Console.WriteLine("---------------- | ---------------- | --------------- | ----------------------------");
+            }
+        }
+
+        //Урок № 4, дз № 1: Отдельный метод для проверки работы класса двоичного дерева
+        static void CheckBinaryTree()
+        {
+            //
+            Console.WriteLine("\nРешение домашнего задания № 1 урока № 4\n");
+
+            //создание дерева
+            BinaryTree binaryTree = new BinaryTree();
+            Console.WriteLine("Создание дерева. Дерево создано...\n");
+
+            //создание сбалансированного дерева из nNodeBalanceTree узлов
+            int nNodeBalanceTree = 5;
+            Console.WriteLine($"Создание сбалансированного дерева из {nNodeBalanceTree} узлов.");
+            Console.WriteLine("Проверка метода: 'TreeNode CreateBalanceTree(int nNode)'");
+            binaryTree.RootTreeNode = binaryTree.CreateBalanceTree(nNodeBalanceTree);
+            Console.WriteLine($"Сбалансированное дерево из {nNodeBalanceTree} узлов создано...");
+
+            //печать дерева
+            Console.WriteLine("\nПечать сбалансированного дерева. Проверка метода: 'void PrintTree(TreeNode rootTreeNode)'");
+            Console.Write("Узлы дерева: "); binaryTree.PrintTree(binaryTree.GetRootNode());
+
+            //вывод количества элементов
+            Console.WriteLine("\n\nПроверка метода: 'int GetCountNode()'");
+            Console.WriteLine($"Кол-во элементов = {binaryTree.GetCountNode()}");
+
+            //добавить узлы
+            List<int> listAddValueNode = new List<int>() { 64, 75, 82 };
+            string sAddValueNode = string.Join(" ", listAddValueNode);
+            Console.WriteLine($"\nДобавление узлов {sAddValueNode} в дерево. Проверка метода: 'void AddNode(int value)'");
+            foreach (int valueNode in listAddValueNode) binaryTree.AddNode(valueNode);
+            Console.Write($"Узлы дерева после добавления узлов {sAddValueNode}:  ");
+            binaryTree.PrintTree(binaryTree.GetRootNode());
+            Console.WriteLine($"\nКол-во элементов = {binaryTree.GetCountNode()}");
+
+            //проверка метода получения корневого узла дерева и метода проверки на пустоту
+            Console.WriteLine("\nПроверка методов: 'TreeNode GetRootNode()' и 'bool IsEmpty()'");
+            Console.Write("Узлы дерева: "); binaryTree.PrintTree(binaryTree.GetRootNode());
+            if (!binaryTree.IsEmpty())
+                Console.WriteLine($"Значение корневого узла дерева (дерево не пустое) = {binaryTree.GetRootNode().Value}");
+            else
+                Console.WriteLine("Узлы дерева не существуют (дерево пустое). Значение корневого узла дерева = null");
+
+            //проверка метода очистки дерева и метода проверки на пустоту
+            Console.WriteLine("\nПроверка методов: 'void ClearTree()' и 'bool IsEmpty()'");
+            binaryTree.ClearTree();
+            Console.Write("Дерево очищено...");
+            if (!binaryTree.IsEmpty())
+                Console.WriteLine(" Дерево не пустое. ");
+            else
+                Console.WriteLine(" Дерево пустое.");
+
+            //!!!формирование дерева
+            Console.WriteLine($"\nДобавление узлов в дерево методом 'void AddNode(int value)'");
+            listAddValueNode = new List<int>() { 104, 8, 12, 23, 1, 6, 3, 59 };
+            foreach (int valueNode in listAddValueNode) binaryTree.AddNode(valueNode);
+            Console.Write($"Узлы дерева : "); binaryTree.PrintTree(binaryTree.GetRootNode());
+            Console.WriteLine($"Кол-во элементов = {binaryTree.GetCountNode()}");
+
+            //проверка метода получения узла по значению
+            Console.WriteLine("\nПроверка метода: 'TreeNode GetNodeByValue(int value)'");
+            Console.Write($"Узлы дерева : "); binaryTree.PrintTree(binaryTree.GetRootNode());
+            Console.WriteLine();
+            foreach (int currentValueNode in listAddValueNode) _CheckGetNodeByValue(currentValueNode); //найдем все!!!
+            _CheckGetNodeByValue(1000); //узел со значением 1000 в дереве отсутствует
+
+            //проверка метода удаления узлов по значению
+            Console.WriteLine("\nПроверка метода: 'void RemoveNodeByValue(int value)'");
+            _CheckRemoveNodeByValue(12);
+            _CheckRemoveNodeByValue(6);
+            _CheckRemoveNodeByValue(104);
+            _CheckRemoveNodeByValue(59);
+            _CheckRemoveNodeByValue(1000); //узла со значением 1000 в дереве нет, ничего не меняется
+
+            //проверка метода получения узла по значению
+            void _CheckGetNodeByValue(int _valueNode)
+            {
+                TreeNode getNode = binaryTree.GetNodeByValue(_valueNode);
+                Console.Write($"Узел со значением {_valueNode} в дереве ");
+                //binaryTree.PrintTree(binaryTree.GetRootNode());
+                if (getNode != null)
+                    Console.WriteLine("найден");
+                else
+                    Console.WriteLine("не найден (узел в дереве отсутствует)");
+            }
+
+            //проверка метода удаления узлов по значению
+            void _CheckRemoveNodeByValue(int _removeValueNode)
+            {
+                Console.Write($"\nУзлы дерева до удаления узла со значением {_removeValueNode}: "); binaryTree.PrintTree(binaryTree.GetRootNode());
+                Console.Write($"Кол-во элементов = {binaryTree.GetCountNode()}");
+                binaryTree.RemoveNodeByValue(_removeValueNode);
+                Console.Write($"\nУзлы дерева после удаления узла со значением {_removeValueNode}: "); binaryTree.PrintTree(binaryTree.GetRootNode());
+                Console.Write($"Кол-во элементов = {binaryTree.GetCountNode()}");
+                Console.WriteLine();
+            }
+        }
+
+        //Урок № 4, дз № 2: Отдельный метод для определения времени при проверке наличия строки в HashSet, массиве, списке (List)
+        static void CheckTimePerformanceHashMassivList()
+        {
+            //
+            Console.WriteLine("\nРешение домашнего задания № 2 урока № 4");
+
+            //
+            Console.WriteLine("\nТаблица - Затраченное время для проверки наличия строки в HashSet, string[] и List, секунд");
+            Console.WriteLine("---------------- | --------------| --------------- | -----------------");
+            Console.WriteLine("Количество точек | Время HashSet | Время string[]  |  Время List");
+            Console.WriteLine("---------------- | --------------| --------------- | -----------------");
+            _Check(10000);
+            _Check(30000);
+            _Check(50000);
+            _Check(70000);
+            _Check(90000);
+
+            void _Check(int _totalElements)
+            {
+                var ob = new ClassTimePerformanceHashMassivList(_totalElements);
+                ob.SetTimePerformance();
+                Console.WriteLine("{0, 16} | {1, 13} | {2, 15} | {3, 13}",
+                                  _totalElements, ob.TimePerformanceHash, ob.TimePerformanceMassiv, ob.TimePerformanceList);
+                Console.WriteLine("---------------- | --------------| --------------- | -----------------");
             }
         }
 
@@ -239,6 +369,8 @@ namespace HomeWorks
                     case 4: CheckDoublyLinkedList(); break;
                     case 5: CheckBinarySearch(); break;
                     case 6: CheckTimePerformance(); break;
+                    case 7: CheckBinaryTree(); break;
+                    case 8: CheckTimePerformanceHashMassivList(); break;
                 }
                 Console.Write("\nДля продолжения работы нажмите любую клавишу, для окончания n : ");
                 bExit = (Console.ReadLine() == "n") ? false : true;
