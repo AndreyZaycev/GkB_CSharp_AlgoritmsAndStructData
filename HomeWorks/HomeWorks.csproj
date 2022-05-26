@@ -45,10 +45,12 @@
   <ItemGroup>
     <Compile Include="ClassBackgroundInformation.cs" />
     <Compile Include="ClassBinarySearch.cs" />
+    <Compile Include="ClassBinaryTree.cs" />
     <Compile Include="ClassCheckingPrimeNumber.cs" />
     <Compile Include="ClassDoublyLinkedList.cs" />
     <Compile Include="ClassEstimateNumberFibonachi.cs" />
     <Compile Include="ClassMenu.cs" />
+    <Compile Include="ClassTimePerformanceHashMassivList.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
