@@ -27,4 +27,40 @@ namespace HomeWorks
             return result;
         }
     }
+
+    internal class Lesson1Task3 : ILessons
+    {
+        public string Number => "3";
+
+        public string Description => "Урок № 1, дз № 3 : вычисление числа Фибоначчи";
+
+        public void Run()
+        {
+            //
+            Console.WriteLine("\nРешение домашнего задания № 3 урока № 1");
+
+            //
+            long number;
+            bool bNumber = false;
+            do
+            {
+                Console.Write("Введите член последовательности Фибоначчи (целое положительное число) : ");
+                bNumber = long.TryParse(Console.ReadLine(), out number);
+                if (!bNumber || number < 0)
+                {
+                    Console.WriteLine("Некорректный ввод! Введите член последовательности Фибоначчи (целое положительное число) повторно");
+                    bNumber = false;
+                }
+            }
+            while (!bNumber);
+
+            //
+            long numFibonachiRecursivMetod = ClassEstimateNumberFibonachi.GetNumberFibonachiRecursivMetod(number);
+            long numFibonachiNonRecursivMetod = ClassEstimateNumberFibonachi.GetNumberFibonachiNonRecursivMetod(number);
+            Console.WriteLine($"{number} член последовательности Фибоначчи, определенный рекурсивным методом, равен {numFibonachiRecursivMetod}");
+            Console.WriteLine($"{number} член последовательности Фибоначчи, определенный не рекурсивным методом, равен {numFibonachiNonRecursivMetod}");
+        }
+    }
+
+
 }
