@@ -125,4 +125,35 @@ namespace HomeWorks
         }
     }
 
+    internal class Lesson3Task : ILessons
+    {
+        public string Number => "6";
+
+        public string Description => "Урок № 3, дз : проверка времени выполнения кода для массивов точек значимого и ссылочного типов";
+
+        public void Run()
+        {
+            //
+            Console.WriteLine("\nРешение домашнего задания урока № 3");
+
+            //
+            Console.WriteLine("\nКоличество точек | Время timeStruct | Время timeClass | Ratio (timeClass/timeStruct)");
+            Console.WriteLine("---------------- | ---------------- | --------------- | ----------------------------");
+            _Check(100000);
+            _Check(200000);
+            _Check(300000);
+            _Check(400000);
+
+            void _Check(int _numberPoint)
+            {
+                CheckTimeEstimateDistance obCheck = new CheckTimeEstimateDistance(_numberPoint);
+                double timeStruct = obCheck.GetTimeEstimateDistancePointStruct();
+                double timeClass = obCheck.GetTimeEstimateDistancePointClass();
+                double ratio = Math.Round(timeClass / timeStruct, 6);
+                Console.WriteLine("{0, 16} | {1, 16} | {2, 15} | {3, 27}", _numberPoint, timeStruct, timeClass, ratio);
+                Console.WriteLine("---------------- | ---------------- | --------------- | ----------------------------");
+            }
+        }
+    }
+
 }

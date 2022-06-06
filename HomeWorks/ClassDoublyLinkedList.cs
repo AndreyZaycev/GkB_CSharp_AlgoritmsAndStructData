@@ -182,4 +182,98 @@ namespace HomeWorks
         }
     }
 
+    internal class Lesson2Task1 : ILessons
+    {
+        public string Number => "4";
+
+        public string Description => "Урок № 2, дз № 1 : проверка работы методов класса двусвязного списка";
+
+        public void Run()
+        {
+            //
+            Console.WriteLine("\nРешение домашнего задания № 1 урока № 2\n");
+
+            //создание списка
+            DoublyLinkedList list = new DoublyLinkedList();
+            Console.WriteLine("Список создан...\n");
+
+            //проверка метода AddNode(int value)
+            Console.WriteLine("Проверка метода 'void AddNode(int value)'...");
+            Console.WriteLine("Добавлено 5 значений.  ");
+            list.AddNode(4);
+            list.AddNode(11);
+            list.AddNode(17);
+            list.AddNode(39);
+            list.AddNode(72);
+            Console.Write($"Текущий список : {list.GetStringValueNode()}  ");
+
+            //проверка метода int GetCount()
+            Console.WriteLine("\n\nПроверка метода 'int GetCount()'...");
+            Console.WriteLine($"Количество узлов в списке = {list.GetCount()}");
+
+            //проверка метода Node GetFindNodeByValue(int searchValue)
+            Console.WriteLine("\nПроверка метода 'Node GetFindNodeByValue(int searchValue)'...");
+            _CheckFindNode(17);
+            _CheckFindNode(15);
+            _CheckFindNode(39);
+
+            //проверка метода void AddNodeAfter(Node node, int value)
+            Console.WriteLine("\nПроверка метода 'void AddNodeAfter(Node node, int value)'...");
+            _CheckAddNodeAfter(4, 44);   //после нулевого элемента  
+            _CheckAddNodeAfter(17, 177); //в середине
+            _CheckAddNodeAfter(72, 722); //после последнего элемента
+
+            //проверка метода void RemoveNodeByIndex(int index)
+            Console.WriteLine("\nПроверка метода 'void RemoveNodeByIndex(int index)'...");
+            _CheckRemoveNodeByIndex(0);  //нулевой
+            _CheckRemoveNodeByIndex(3);  //в середине
+            _CheckRemoveNodeByIndex(5);  //последний
+            _CheckRemoveNodeByIndex(20); //узла с индексом 20 нет, поэтому список остается неизменным
+            Console.WriteLine("Узла с индексом 20 нет, поэтому список остается неизменным");
+
+            //проверка метода void RemoveNodeByNode(Node node)
+            Console.WriteLine("\nПроверка метода 'void RemoveNodeByNode(Node node)'...");
+            _CheckRemoveNodeByNode(44);  //нулевой узел со значением 44
+            _CheckRemoveNodeByNode(17);  //узел в середине со значением 17
+            _CheckRemoveNodeByNode(72);  //последний узел со значением 72
+            _CheckRemoveNodeByNode(100); //узла со значением 100 нет, поэтому список остается неизменным
+            Console.WriteLine("Узла со значением 100 нет, поэтому список остается неизменным");
+
+            void _CheckFindNode(int _searchValue)
+            {
+                Node searchNode = list.GetFindNodeByValue(_searchValue);
+                string sResult = (searchNode != null) ? $"Узел со значением {_searchValue} в списке {list.GetStringValueNode()} найден"
+                                                      : $"Узел со значением {_searchValue} в списке {list.GetStringValueNode()} не найден (отсутствует)";
+                Console.WriteLine(sResult);
+            }
+
+            void _CheckAddNodeAfter(int _valueNode, int _addValueNode)
+            {
+                Console.Write($"\nТекущий список : {list.GetStringValueNode()}  ");
+                Console.WriteLine($"Количество узлов в списке = {list.GetCount()}");
+                list.AddNodeAfter(list.GetFindNodeByValue(_valueNode), _addValueNode);
+                Console.WriteLine($"Текущий список после добавления узла со значением {_addValueNode} после узла со значением {_valueNode} : {list.GetStringValueNode()}  ");
+                Console.WriteLine($"Количество узлов в списке после добавления узла = {list.GetCount()}");
+            }
+
+            void _CheckRemoveNodeByIndex(int _index)
+            {
+                Console.Write($"\nТекущий список : {list.GetStringValueNode()}  ");
+                Console.WriteLine($"Количество узлов в списке = {list.GetCount()}");
+                list.RemoveNodeByIndex(_index);
+                Console.WriteLine($"Текущий список после удаления узла с индексом {_index} : {list.GetStringValueNode()}");
+                Console.WriteLine($"Количество узлов в списке после удаления узла с индексом {_index} = {list.GetCount()}");
+            }
+
+            void _CheckRemoveNodeByNode(int _valueNode)
+            {
+                Console.Write($"\nТекущий список : {list.GetStringValueNode()}  ");
+                Console.WriteLine($"Количество узлов в списке = {list.GetCount()}");
+                list.RemoveNodeByNode(list.GetFindNodeByValue(_valueNode));
+                Console.WriteLine($"Текущий список после удаления узла со значением {_valueNode} : {list.GetStringValueNode()}");
+                Console.WriteLine($"Количество узлов в списке после удаления узла со значением {_valueNode} = {list.GetCount()}");
+            }
+        }
+    }
+
 }

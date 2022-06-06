@@ -122,4 +122,37 @@ namespace HomeWorks
             SetTimePerformanceList();
         }
     }
+
+    internal class Lesson4Task2 : ILessons
+    {
+        public string Number => "8";
+
+        public string Description => "Урок № 4, дз № 2 : проверка методов для определения времени поиска строки в HashSet, массиве, списке (List)";
+
+        public void Run()
+        {
+            //
+            Console.WriteLine("\nРешение домашнего задания № 2 урока № 4");
+
+            //
+            Console.WriteLine("\nТаблица - Затраченное время для проверки наличия строки в HashSet, string[] и List, секунд");
+            Console.WriteLine("---------------- | --------------| --------------- | -----------------");
+            Console.WriteLine("Количество точек | Время HashSet | Время string[]  |  Время List");
+            Console.WriteLine("---------------- | --------------| --------------- | -----------------");
+            _Check(10000);
+            _Check(30000);
+            _Check(50000);
+            _Check(70000);
+            _Check(90000);
+
+            void _Check(int _totalElements)
+            {
+                var ob = new ClassTimePerformanceHashMassivList(_totalElements);
+                ob.SetTimePerformance();
+                Console.WriteLine("{0, 16} | {1, 13} | {2, 15} | {3, 13}",
+                                  _totalElements, ob.TimePerformanceHash, ob.TimePerformanceMassiv, ob.TimePerformanceList);
+                Console.WriteLine("---------------- | --------------| --------------- | -----------------");
+            }
+        }
+    }
 }
