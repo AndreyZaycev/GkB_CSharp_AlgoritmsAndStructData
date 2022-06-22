@@ -102,6 +102,7 @@ namespace HomeWorks
             Console.WriteLine("\nРешение домашнего задания урока № 7");
 
             //
+            
             Console.WriteLine("Всего решений : 92");
             ClassQueen cw = new ClassQueen(8);
             cw.PrintResult();
