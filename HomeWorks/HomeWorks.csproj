@@ -49,6 +49,7 @@
     <Compile Include="ClassCheckingPrimeNumber.cs" />
     <Compile Include="ClassDoublyLinkedList.cs" />
     <Compile Include="ClassEstimateNumberFibonachi.cs" />
+    <Compile Include="ClassQueen.cs" />
     <Compile Include="ClassTimePerformanceHashMassivList.cs" />
     <Compile Include="InterfaceLessons.cs" />
     <Compile Include="Lesson1Task2.cs" />

@@ -21,7 +21,8 @@ namespace HomeWorks
                 new Lesson4Task1(),
                 new Lesson4Task2(),
                 new Lesson5Task1(),
-                new Lesson5Task2()
+                new Lesson5Task2(),
+                new Lesson7Task()
             };
 
             bool bExit = true;
