@@ -47,8 +47,10 @@
     <Compile Include="ClassBinarySearch.cs" />
     <Compile Include="ClassBinaryTree.cs" />
     <Compile Include="ClassCheckingPrimeNumber.cs" />
+    <Compile Include="ClassCountingSort.cs" />
     <Compile Include="ClassDoublyLinkedList.cs" />
     <Compile Include="ClassEstimateNumberFibonachi.cs" />
+    <Compile Include="ClassQueen.cs" />
     <Compile Include="ClassTimePerformanceHashMassivList.cs" />
     <Compile Include="InterfaceLessons.cs" />
     <Compile Include="Lesson1Task2.cs" />
